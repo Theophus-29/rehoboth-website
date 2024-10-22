@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='images/rehobothlogo.png') }}" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Staff Manager</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .top {
+            margin-bottom: 20px;
+            float: right;
+        }
+        .top button {
+            background-color: rgb(43, 50, 191);
+            padding: 10px;
+            border-radius: 15px;
+            transition: 0.5s;
+            border: none;
+            cursor: pointer;
+        }
+        .top button:hover {
+            transform: translateY(-10px);
+        }
+        .top button label {
+            font-size: 20px;
+            color: white;
+        }
+        .heading-container {
+            border: 2px solid black;
+            padding: 10px;
+        }
+        .heading-container label {
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .card {
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+            transition: 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            text-align: left;
+        }
+        .card-header {
+            background-color: #BB9AB1;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .action-btns {
+            margin-top: 10px;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e6e6ff;
+            color: #4a4a4a;
+            border: 1px solid #d1c4e9;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #d1c4e9;
+            color: #333;
+            border-color: #b39ddb;
+        }
+        @media (max-width: 768px) {
+            .top button {
+                font-size: 16px;
+                padding: 8px;
+            }
+            .heading-container label {
+                font-size: 14px;
+            }
+            .profile-photo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top">
+        <a href="{{ url_for('admin.dashboard') }}">
+            <button class="btn btn-primary">
+                <label for="back">Back</label>
+            </button>
+        </a>    
+    </header>
+    <br>
+    <div class="container heading-container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="Students">Admin & Staff Details</label>
+            </div>
+            <div class="col-12 col-md-6 text-md-right">
+                <a href="{{ url_for('staff.staff')}}" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i> Add Staff
+                </a>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Admin Card -->
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="admin_profiles/Screenshot (87).png" alt="Admin Photo" class="profile-photo">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5><strong>Admin</strong></h5>
+                        <p><strong>Name:</strong> Praveen Pison Durai</p>
+                        <p><strong>Email:</strong> rehobothmusicals@gmail.com</p>
+                        <p><strong>Mobile No 1:</strong> 9626266607</p>
+                        <p><strong>Mobile No 2:</strong> 8344451824</p>
+                        <p><strong>Address:</strong> 12, Ramalinganar street. Thyagarajanagar, Tirunelveli, 627011</p>
+                        <div class="action-btns">
+                            <a href="{{ url_for('staff.edit_details')}}" class="btn btn-sm btn-success">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Staff Card -->
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="admin_profiles/Youtube_Rounded_icon-icons.com_61575.png" alt="Staff Photo" class="profile-photo">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5><strong>Staff</strong></h5>
+                        <p><strong>Name:</strong> Staff1</p>
+                        <p><strong>Email:</strong> g@gmail.com</p>
+                        <p><strong>Mobile No 1:</strong> 98787667</p>
+                        <p><strong>Mobile No 2:</strong></p>
+                        <p><strong>Address:</strong> dfg</p>
+                        <div class="action-btns">
+                            <a href="{{ url_for('staff.edit_details')}}" class="btn btn-sm btn-success">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

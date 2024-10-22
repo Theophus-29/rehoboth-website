@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/rehobothlogo.png') }}" type="image/x-icon">
+
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+            margin: 0;
+        }
+        .top-bar {
+            background-color: #180161;
+            color: white;
+            padding: 25px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid white;
+            height: 100px;
+            box-sizing: border-box;
+        }
+        .top-bar label {
+            font-size: 26px;
+            padding-left: 20px;
+        }
+        .top-bar .img-topbar img {
+            height: 70px;
+        }
+        .sidebar {
+            background-color: #4951df;
+            color: white;
+            padding: 20px;
+            height: calc(100vh - 100px);
+            position: fixed;
+            top: 100px;
+            left: 0;
+            width: 250px;
+            border-right: 5px solid white;
+            border-left: 5px solid white;
+        }
+        .sidebar-header {
+            margin-bottom: 20px;
+        }
+        .link a {
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+        .link a img {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            transition: transform 0.4s ease;
+        }
+        .link li {
+            position: relative;
+            top: 10px;
+            cursor: pointer;
+            opacity: 1;
+            transition: all 0.4s ease-in-out;
+            display: block;
+            width: calc(100% - 48px);
+            text-align: left;
+            z-index: 100;
+            user-select: none;
+        }
+        .link li:hover {
+            opacity: 1;
+            top: 5px;
+        }
+        .link li:hover a {
+            color: #FFD700;
+            transform: translateX(-8px);
+        }
+        .link li:hover img {
+            transform: scale(1.1);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            overflow-y: auto;
+            transition: margin-left 0.3s ease;
+            margin-top: 100px;
+            height: calc(100vh - 100px);
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 100%;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card-view {
+            border: 1px solid white;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        .card-view:hover {
+            transition: 0.5s;
+            transform: translateY(-10px);
+        }
+        .card-view a {
+            text-decoration: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card-view a i {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .card-view-1 { background-color: #f072f9; }
+        .card-view-2 { background-color: #72b8f9; }
+        .card-view-3 { background-color: #6fffd9; }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                width: 100%;
+                border-right: none;
+                border-bottom: 5px solid white;
+            }
+            .main-content {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+                height: auto;
+            }
+            .top-bar {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="img-topbar">
+            <img src="{{ url_for('static', filename='images/rehobothlogo.png') }}">
+        </div>
+        <label>REHOBOTH MUSICALS</label>
+    </header>
+    <div class="d-flex">
+        <nav class="sidebar">
+            <div class="sidebar-header mb-4"></div>
+            <ul class="link list-unstyled">
+                <li class="mb-3">
+                    <a href="{{ url_for('admin.dashboard') }}" class="d-flex align-items-center text-white text-decoration-none">
+                        <img src="{{ url_for('static', filename='images/desktop.png') }}" class="sidebar-icon mr-2">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="mb-3">
+                    <a href="{{ url_for('dashboard.upload') }}" class="d-flex align-items-center text-white text-decoration-none">
+                        <img src="{{ url_for('static', filename='images/upload.png') }}" class="sidebar-icon mr-2">
+                        Uploads
+                    </a>
+                </li>
+                <li class="mb-3">
+                    <a href="{{ url_for('dashboard.profile') }}" class="d-flex align-items-center text-white text-decoration-none">
+                        <img src="{{ url_for('static', filename='images/settings.png') }}" class="sidebar-icon mr-2">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card-view card-view-1">
+                            <a href="{{ url_for('student.new_admission') }}">
+                                <i class="fas fa-user-plus fa-2x"></i>
+                                <span>New Admission</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card-view card-view-2">
+                            <a href="{{ url_for('student.all_students') }}">
+                                <i class="fas fa-user-check fa-2x"></i>
+                                <span>All Students</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card-view card-view-3">
+                            <a href="{{ url_for('student.inactive_students') }}">
+                                <i class="fas fa-user-slash fa-2x"></i>
+                                <span>Inactive Students</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
